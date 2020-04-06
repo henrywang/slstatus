@@ -63,8 +63,10 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ run_command, "  %s ", "cat /sys/class/net/enp0s25/operstate" },
-	{ wifi_essid, "  %s ", "wlp4s0" },
+	{ run_command, " %s ", "ip link show up | grep tun0 > /dev/null 2>&1 && echo -n  || echo -n  " },
+    /* grep wlp2s0 because enp0s31f6 is always there, but wlp2s0 is not there when ethernet connected */
+	{ run_command, " %s ", "ip link show up | grep wlp2s0 > /dev/null 2>&1 && echo -n   || echo -n  " },
+	{ wifi_essid, " %s ", "wlp2s0" },
 	{ cpu_perc, "  %s%% ", NULL },
 	{ ram_used, "  %s", NULL },
 	{ battery_perc, "  %s%% ", "BAT0" },
